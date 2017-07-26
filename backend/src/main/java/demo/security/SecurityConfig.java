@@ -20,9 +20,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomAuthenticationProvider authProvider;
 
+    @Autowired
+    private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().authorizeRequests().anyRequest().authenticated().and().httpBasic().and().csrf().disable();
+        // @formatter:off
+        http.cors()
+                .and()
+                    .authorizeRequests()
+                        .anyRequest()
+                        .authenticated()
+                .and()
+                    .exceptionHandling()
+                        .authenticationEntryPoint(restAuthenticationEntryPoint)
+                .and()
+                    .csrf()
+                        .disable();
+        // @formatter:on
     }
 
     @Override
