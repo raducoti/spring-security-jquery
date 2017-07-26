@@ -1,0 +1,1 @@
+Just import the project in IntelliJ a run Application.java

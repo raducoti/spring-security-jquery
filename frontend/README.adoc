@@ -1,0 +1,3 @@
+Frontend should be served from an http server.
+For development please have a look at https://www.npmjs.com/package/live-server
+Just type live-server in src folder and you will be able to see the app running at http://127.0.0.1:8080/login.html

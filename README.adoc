@@ -1,0 +1,2 @@
+Spring Security Login Rest Demo App
+Separate backend and frontend servers
