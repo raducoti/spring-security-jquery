@@ -1,6 +1,7 @@
 package demo.security;
 
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -18,10 +19,10 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String name = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-        if (name.equals("admin")) {
+        if (name.equals("admin_admin")) {
             return new UsernamePasswordAuthenticationToken(name, password, new ArrayList<>());
         } else {
-            return null;
+            throw new BadCredentialsException("Invalid credentials");
         }
     }
 
