@@ -8,3 +8,9 @@ logging:
     demo: DEBUG
 
 allowed.origins: "*"
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/test
+    username: test
+    password: test
