@@ -8,10 +8,14 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
@@ -26,9 +30,13 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String name = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-        Optional<UserDto> user = userService.findByUsername(name);
-        if (user.isPresent()) {
-            return new UsernamePasswordAuthenticationToken(name, password, new ArrayList<>());
+        Optional<UserDto> userDto = userService.findByUsername(name);
+        if (userDto.isPresent()) {
+            List<GrantedAuthority> grantedAuthorities = userDto.get().getRoles()
+                    .stream()
+                    .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
+                    .collect(Collectors.toList());
+            return new UsernamePasswordAuthenticationToken(name, "", grantedAuthorities);
         } else {
             throw new BadCredentialsException("Invalid credentials");
         }
