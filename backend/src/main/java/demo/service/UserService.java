@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,5 +27,15 @@ public class UserService {
         return users.stream()
                 .map(user -> new UserToUserDto().apply(user))
                 .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<UserDto> findByUsername(String username) {
+        Optional<User> user = userRepository.findByUsername(username);
+        UserDto userDto = null;
+        if (user.isPresent()) {
+            userDto = new UserToUserDto().apply(user.get());
+        }
+        return Optional.ofNullable(userDto);
     }
 }

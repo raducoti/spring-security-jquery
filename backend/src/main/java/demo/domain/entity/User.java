@@ -18,6 +18,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    private String username;
+
     private String name;
 
     @ManyToMany(targetEntity = Role.class)

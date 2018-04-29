@@ -1,1 +1,1 @@
-INSERT INTO users values (1,'John Joe'), (2,'Jane Doe');
+INSERT INTO users values (1,'admin_admin','John Joe'), (2,'user_user','Jane Doe');
