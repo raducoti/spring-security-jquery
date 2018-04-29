@@ -1,2 +1,8 @@
-Spring Security Login Rest Demo App
+# Spring Security Login Rest Demo App
+
 Separate backend and frontend servers
+
+## Backend
+* Spring Boot: https://projects.spring.io/spring-boot/
+* Spring Security: https://projects.spring.io/spring-security/
+* Spring Session (Postgres JDBC): https://projects.spring.io/spring-session/

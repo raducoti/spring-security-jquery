@@ -1,1 +1,6 @@
-Just import the project in IntelliJ a run Application.java
+# Setup dev env
+
+* Install docker: https://www.docker.com/
+* `./start-progress.sh` will create a Postgres instance in a docker container and initialize your db schema
+* Flyway is used under the hood for DB migrations
+* Import the project in IntelliJ a run Application.java
